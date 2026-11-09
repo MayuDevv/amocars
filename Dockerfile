@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql mbstring zip intl gd \
     && rm -rf /var/lib/apt/lists/*
 
+# PHP upload configuration
+RUN printf "upload_max_filesize=20M\npost_max_size=100M\nmemory_limit=256M\nmax_execution_time=120\nmax_input_time=120\n" > /usr/local/etc/php/conf.d/uploads.ini
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
@@ -20,7 +23,8 @@ COPY . .
 RUN mkdir -p storage/framework/cache/data \
     storage/framework/sessions \
     storage/framework/views \
-    bootstrap/cache
+    bootstrap/cache \
+    storage/app/public/cars
 
 EXPOSE 8000
 

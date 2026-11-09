@@ -4,7 +4,7 @@ function Navbar() {
             <div className="mx-auto max-w-7xl px-6">
                 <div className="flex h-20 items-center justify-between">
                     <a href="/" className="text-3xl font-black tracking-wider">
-                        AMACARS
+                        AMOCARS
                     </a>
 
                     <div className="hidden gap-8 md:flex">
